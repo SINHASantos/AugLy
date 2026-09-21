@@ -92,6 +92,7 @@ class Compose(BaseComposition):
 
         for transform in self.transforms:
             output_path = transform(output_path, metadata=metadata)
+        # pyrefly: ignore [bad-return]
         return output_path
 
 

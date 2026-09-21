@@ -552,9 +552,11 @@ def insert_in_background(
             if num_channels > 1:
                 background_audio = np.tile(background_audio, (num_channels, 1))
 
+    # pyrefly: ignore [missing-attribute]
     num_samples_bg = background_audio.shape[-1]
     offset = int(offset_factor * num_samples_bg)
     aug_audio = np.hstack(
+        # pyrefly: ignore [bad-index, unsupported-operation]
         [background_audio[..., :offset], audio, background_audio[..., offset:]]
     )
 
@@ -564,6 +566,7 @@ def insert_in_background(
             function_name="insert_in_background",
             dst_audio=aug_audio,
             dst_sample_rate=sample_rate,
+            # pyrefly: ignore [missing-attribute]
             background_duration=background_audio.shape[-1] / sample_rate,
             offset=offset,
             # pyre-fixme[61]: `func_kwargs` may not be initialized here.
